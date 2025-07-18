@@ -1,26 +1,29 @@
 import pygame
 from constants import *
 from player import *
-from asteroid import *
-from asteroidfield import *
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 pygame.init()
 clock = pygame.time.Clock()
 def main():
+    pygame.init()
+    clock = pygame.time.Clock()
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
-    asteroid = pygame.sprite.Group()
-    Asteroid.containers = (asteroid, updatable, drawable)
+    asteroids = pygame.sprite.Group()
+
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = updatable
+    asteroid_field = AsteroidField()
+
     Player.containers = (updatable, drawable)
-    DT = 0
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     ship = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, PLAYER_RADIUS)
 
-    a = f"""
-    Starting Asteroids!
-    Screen width: {SCREEN_WIDTH}
-    Screen height: {SCREEN_HEIGHT}
-    """
-    print(a)
+    DT = 0
+
+
     # sets framerate and draws black screen every frame
     while True:
         for event in pygame.event.get():
