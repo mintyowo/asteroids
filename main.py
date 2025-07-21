@@ -2,7 +2,7 @@ import pygame
 import sys
 from constants import *
 from player import *
-from asteroid import Asteroid
+from asteroid import *
 from asteroidfield import AsteroidField
 from circleshape import *
 from shot import *
@@ -28,7 +28,7 @@ def main():
     Shot.containers = (shots, updatable, drawable)
 
     DT = 0
-
+    
 
     # sets framerate and draws black screen every frame
     while True:
@@ -43,12 +43,13 @@ def main():
 
         for asteroid in asteroids:
             if CircleShape.collision(asteroid, ship) == True:
-                print("Game over!")
-                sys.exit()
+                gameover()
             for shot in shots:
                 if CircleShape.collision(asteroid, shot) == True:
                     shot.kill()
+                    asteroid.scoreincrease()
                     asteroid.split()
+                    
 
         pygame.display.flip()
     
