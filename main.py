@@ -28,7 +28,7 @@ def main():
     Shot.containers = (shots, updatable, drawable)
 
     DT = 0
-    
+    print("press 1 and 2 to change firing mode!") 
 
     # sets framerate and draws black screen every frame
     while True:

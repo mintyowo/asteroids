@@ -37,7 +37,7 @@ class Asteroid(CircleShape):
         global POINTS_PER_ROCK
         global SCORE
         SCORE = SCORE + POINTS_PER_ROCK + (self.radius / 2)
-        print(SCORE)
+        
         
 def gameover():
     global SCORE
